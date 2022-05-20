@@ -16,7 +16,7 @@ function stampaPost(arrayPost){
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${element.author.name}</div>
-                    <div class="post-meta__time">4 mesi fa</div>
+                    <div class="post-meta__time">${element.created}</div>
                 </div>                    
             </div>
         </div>

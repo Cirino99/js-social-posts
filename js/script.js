@@ -25,7 +25,7 @@ function stampaPost(arrayPost){
         <div class="post__footer">
             <div class="likes js-likes">
                 <div class="likes__cta">
-                    <a class="like-button  js-like-button" href="#" data-postid="1">
+                    <a class="like-button  js-like-button" href="#" data-postid="${element.id}">
                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                         <span class="like-button__label">Mi Piace</span>
                     </a>
@@ -39,3 +39,14 @@ function stampaPost(arrayPost){
         myContainer.append(divPost);
     });  
 }
+
+const divButtonLike = document.querySelectorAll(".js-like-button");
+console.log(divButtonLike);
+
+divButtonLike.forEach((button) => {
+    button.addEventListener("click",
+    function() {
+        console.log(button);
+        button.classList.toggle('like-button--liked');
+    })
+});

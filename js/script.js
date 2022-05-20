@@ -3,6 +3,7 @@ const myContainer = document.getElementById('container');
 stampaPost(posts);
 
 function stampaPost(arrayPost){
+    myContainer.innerHTML = '';
     arrayPost.forEach(element => {
         const divPost = document.createElement('div');
         divPost.classList.add('post');
@@ -31,11 +32,12 @@ function stampaPost(arrayPost){
                     </a>
                 </div>
                 <div class="likes__counter">
-                    Piace a <b id="like-counter-1" class="js-likes-counter">${element.likes}</b> persone
+                    Piace a <b id="like-counter-${element.id}" class="js-likes-counter">${element.likes}</b> persone
                 </div>
             </div> 
         </div>            
         `;
+        console.log(element.likes);
         myContainer.append(divPost);
     });  
 }
@@ -46,7 +48,12 @@ console.log(divButtonLike);
 divButtonLike.forEach((button) => {
     button.addEventListener("click",
     function() {
-        console.log(button);
+        let postId = parseInt(button.getAttribute('data-postid')) - 1;
+        console.log(postId);
+        posts[postId].likes++;
+        console.log(posts[postId].likes);
         button.classList.toggle('like-button--liked');
+        const likeCounter = document.getElementById(`like-counter-${posts[postId].id}`);
+        likeCounter.innerText = posts[postId].likes++;
     })
 });

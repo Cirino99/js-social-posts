@@ -1,5 +1,6 @@
 // costanti del dom
 const myContainer = document.getElementById('container');
+var arrMiPiace = [];
 stampaPost(posts);
 
 function stampaPost(arrayPost){
@@ -52,10 +53,14 @@ divButtonLike.forEach((button) => {
         console.log(button.classList);
         button.classList
         button.classList.toggle('like-button--liked');
-        if(button.classList.contains('like-button--liked'))
+        if(button.classList.contains('like-button--liked')){
             posts[postId].likes++;
-        else
-        posts[postId].likes--;
+            arrMiPiace.push(posts[postId].id)
+        } else{
+            posts[postId].likes--;
+            arrMiPiace = arrMiPiace.filter((value)=>value!==posts[postId].id);
+        }
+        console.log(arrMiPiace);
         const likeCounter = document.getElementById(`like-counter-${posts[postId].id}`);
         likeCounter.innerText = posts[postId].likes;
     })

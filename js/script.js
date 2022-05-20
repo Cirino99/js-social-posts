@@ -49,11 +49,14 @@ divButtonLike.forEach((button) => {
     button.addEventListener("click",
     function() {
         let postId = parseInt(button.getAttribute('data-postid')) - 1;
-        console.log(postId);
-        posts[postId].likes++;
-        console.log(posts[postId].likes);
+        console.log(button.classList);
+        button.classList
         button.classList.toggle('like-button--liked');
+        if(button.classList.contains('like-button--liked'))
+            posts[postId].likes++;
+        else
+        posts[postId].likes--;
         const likeCounter = document.getElementById(`like-counter-${posts[postId].id}`);
-        likeCounter.innerText = posts[postId].likes++;
+        likeCounter.innerText = posts[postId].likes;
     })
 });

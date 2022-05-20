@@ -16,7 +16,7 @@ function stampaPost(arrayPost){
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${element.author.name}</div>
-                    <div class="post-meta__time">${element.created}</div>
+                    <div class="post-meta__time">${ChangeFormateDate(element.created)}</div>
                 </div>                    
             </div>
         </div>
@@ -38,13 +38,11 @@ function stampaPost(arrayPost){
             </div> 
         </div>            
         `;
-        console.log(element.likes);
         myContainer.append(divPost);
     });  
 }
 
 const divButtonLike = document.querySelectorAll(".js-like-button");
-console.log(divButtonLike);
 
 divButtonLike.forEach((button) => {
     button.addEventListener("click",
@@ -65,3 +63,8 @@ divButtonLike.forEach((button) => {
         likeCounter.innerText = posts[postId].likes;
     })
 });
+
+function ChangeFormateDate(oldDate)
+{
+   return oldDate.toString().split("-").reverse().join("/");
+}

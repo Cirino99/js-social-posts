@@ -12,11 +12,11 @@ function stampaPost(arrayPost){
         `<div class="post__header">
             <div class="post-meta">                    
                 <div class="post-meta__icon">
-                    <img class="profile-pic" src="${element.author.image}" alt="${element.author.name}">                    
+                    ${controlImageAuthor(element)}              
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${element.author.name}</div>
-                    <div class="post-meta__time">${ChangeFormateDate(element.created)}</div>
+                    <div class="post-meta__time">${changeFormateDate(element.created)}</div>
                 </div>                    
             </div>
         </div>
@@ -48,7 +48,6 @@ divButtonLike.forEach((button) => {
     button.addEventListener("click",
     function() {
         let postId = parseInt(button.getAttribute('data-postid')) - 1;
-        console.log(button.classList);
         button.classList
         button.classList.toggle('like-button--liked');
         if(button.classList.contains('like-button--liked')){
@@ -58,13 +57,27 @@ divButtonLike.forEach((button) => {
             posts[postId].likes--;
             arrMiPiace = arrMiPiace.filter((value)=>value!==posts[postId].id);
         }
-        console.log(arrMiPiace);
         const likeCounter = document.getElementById(`like-counter-${posts[postId].id}`);
         likeCounter.innerText = posts[postId].likes;
     })
 });
 
-function ChangeFormateDate(oldDate)
+function changeFormateDate(oldDate)
 {
-   return oldDate.toString().split("-").reverse().join("/");
+   return oldDate.split("-").reverse().join("/");
+}
+
+function initialName(name) {
+    let initials = name.split(' ');
+    initials = initials[0].charAt(0) + initials[1].charAt(0);
+    return initials;
+}
+
+function controlImageAuthor(element) {
+    if(element.author.image!==null){
+        return `<img class="profile-pic" src="${element.author.image}" alt="${element.author.name}">`;
+    } else {
+        let name = initialName(element.author.name);
+        return `<div class="profile-pic-default"><span >${name}</span></div>`;
+    }
 }

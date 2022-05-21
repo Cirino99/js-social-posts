@@ -43,7 +43,6 @@ function stampaPost(arrayPost){
 }
 
 const divButtonLike = document.querySelectorAll(".js-like-button");
-
 divButtonLike.forEach((button) => {
     button.addEventListener("click",
     function() {
@@ -62,6 +61,15 @@ divButtonLike.forEach((button) => {
     })
 });
 
+function controlImageAuthor(element) {
+    if(element.author.image!==null){
+        return `<img class="profile-pic" src="${element.author.image}" alt="${element.author.name}">`;
+    } else {
+        let name = initialName(element.author.name);
+        return `<div class="profile-pic-default"><span >${name}</span></div>`;
+    }
+}
+
 function changeFormateDate(oldDate)
 {
    return oldDate.split("-").reverse().join("/");
@@ -71,13 +79,4 @@ function initialName(name) {
     let initials = name.split(' ');
     initials = initials[0].charAt(0) + initials[1].charAt(0);
     return initials;
-}
-
-function controlImageAuthor(element) {
-    if(element.author.image!==null){
-        return `<img class="profile-pic" src="${element.author.image}" alt="${element.author.name}">`;
-    } else {
-        let name = initialName(element.author.name);
-        return `<div class="profile-pic-default"><span >${name}</span></div>`;
-    }
 }

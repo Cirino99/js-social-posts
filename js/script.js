@@ -3,6 +3,7 @@ const myContainer = document.getElementById('container');
 var arrMiPiace = [];
 stampaPost(posts);
 
+// funzioni principali
 function stampaPost(arrayPost){
     myContainer.innerHTML = '';
     arrayPost.forEach(element => {
@@ -12,7 +13,7 @@ function stampaPost(arrayPost){
         `<div class="post__header">
             <div class="post-meta">                    
                 <div class="post-meta__icon">
-                    ${controlImageAuthor(element)}              
+                    ${controlImageAuthor(element)}            
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${element.author.name}</div>
@@ -70,6 +71,7 @@ function controlImageAuthor(element) {
     }
 }
 
+//funzioni generiche
 function changeFormateDate(oldDate)
 {
    return oldDate.split("-").reverse().join("/");

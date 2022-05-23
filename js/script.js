@@ -13,7 +13,7 @@ function stampaPost(arrayPost){
         `<div class="post__header">
             <div class="post-meta">                    
                 <div class="post-meta__icon">
-                    ${controlImageAuthor(element)}            
+                    ${controlImageAuthor(element)}
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${element.author.name}</div>
